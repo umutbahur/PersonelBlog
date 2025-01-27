@@ -1,12 +1,8 @@
 package com.example.PersonalBlog.model;
 
-import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
-import jakarta.validation.constraints.NotBlank;
 import lombok.*;
 
 @Entity
@@ -15,19 +11,20 @@ import lombok.*;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-@Table(name = "user", schema = "blogwebsite")
+@Builder
+@ToString
+@EqualsAndHashCode(onlyExplicitlyIncluded = true)
+@Table(name = "users", schema = "blogwebsite")
 public class User {
     
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    @EqualsAndHashCode.Include
+    private String email;
 
-    @Column
-    @NotBlank(message = "Enter your username")
-    private String username;
+    private String firstName;
 
-    @Column
-    @NotBlank(message = "Enter your password")
+    private String lastName;
+
     private String password;
 
     private String role;
